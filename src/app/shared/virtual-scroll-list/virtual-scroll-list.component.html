@@ -1,0 +1,31 @@
+<div class="flex flex-col h-full">  
+    <ng-container *ngTemplateOutlet="headerTemplate()"></ng-container>
+    <div class="flex grow relative">
+        <div class="absolute top-0 left-0 right-0 bottom-0">
+            <div #container class="w-full h-full overflow-y-auto relative"
+                tabindex="0"
+                role="list"
+                aria-label="Scrollable list"
+                (focus)="onContainerFocus()"
+                (keydown)="onKeydown($event)"
+                (scroll)="onScroll()">
+                <div class="w-full" [style.height.px]="totalHeight"></div>
+                <div class="absolute top-0 left-0 w-full"
+                    [style.transform]="'translateY(' + offsetY + 'px)'">
+                     @for (item of visibleItems(); track item.id) {
+                        <div
+                            #listItem
+                            role="listitem"
+                            [attr.tabindex]="startIndex + $index === activeIndex() ? 0 : -1"
+                            [attr.aria-selected]="startIndex + $index === activeIndex()"
+                            (focus)="onItemFocus(startIndex + $index)"
+                            (click)="onItemClick(startIndex + $index)">
+                            <ng-container *ngTemplateOutlet="listTemplate(); context: {$implicit: item}"></ng-container>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

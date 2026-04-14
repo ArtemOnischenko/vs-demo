@@ -1,0 +1,20 @@
+
+<app-virtual-scroll-list
+    [listTemplate]="listTemplate"
+    [headerTemplate]="headerTemplate"
+    [list]="postsStoreService.userList()"
+    [itemSize]="rowHeight">
+</app-virtual-scroll-list>
+
+<ng-template #headerTemplate>
+    <span class="font-bold pl-5 border-b-2 border-gray-200 leading-10 bg-gray-100">Users:</span>
+</ng-template>
+
+<ng-template #listTemplate let-user>
+    <div (click)="toggleSelection(user.id)" 
+        class="flex flex-col justify-center px-5 border-b-1 border-gray-200 cursor-pointer hover:bg-sky-200 transition-colors duration-200"
+        [class.bg-sky-300]="postsStoreService.userSelected().has(user.id)"
+        [style.height.px]="rowHeight">
+            {{ user.name }}
+    </div>
+</ng-template>

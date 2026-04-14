@@ -1,0 +1,21 @@
+<form [formGroup]="form" class="p-5 flex flex-row gap-5 justify-end">
+    <mat-form-field subscriptSizing="dynamic">
+        <mat-label>Post search</mat-label>
+        <input matInput formControlName="search" placeholder="Search posts" />
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <mat-form-field subscriptSizing="dynamic">
+        <mat-label>Sort by</mat-label>
+        <mat-select formControlName="sortBy">
+            <mat-option value="title">Title</mat-option>
+            <mat-option value="date">Recent</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field subscriptSizing="dynamic">
+        <mat-label>Sort direction</mat-label>
+        <mat-select formControlName="sortDirection">
+            <mat-option value="asc">Ascending</mat-option>
+            <mat-option value="desc">Descending</mat-option>
+        </mat-select>
+    </mat-form-field>
+</form>

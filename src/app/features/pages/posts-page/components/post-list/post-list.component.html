@@ -1,0 +1,23 @@
+<app-virtual-scroll-list
+    [listTemplate]="listTemplate"
+    [list]="postsStoreService.postList()"
+    [itemSize]="rowHeight"
+    [headerTemplate]="headerTemplate">
+</app-virtual-scroll-list>
+
+<ng-template #headerTemplate>
+    <span class="px-5 border-b-2 border-gray-200 leading-10 bg-gray-100 flex">
+        <span class="font-bold">Posts:</span>
+        <span class="flex-1"></span>
+        <span class="text-sm leading-10 text-gray-500">Showing {{ postsStoreService.postList().length }} of {{ postsStoreService.totalPosts() }}</span>
+    </span>
+</ng-template>
+
+<ng-template #listTemplate let-post>
+    <div (click)="openDetails(post)" class="flex flex-col p-5 border-b-1 border-gray-200 cursor-pointer hover:bg-sky-200 transition-colors duration-200" 
+        [style.height.px]="rowHeight">
+        <span class="font-bold">{{ post.title }}</span>
+        <span class="text-sm text-gray-500">{{ post.userName }}</span>
+        <span class="h-20 overflow-hidden whitespace-nowrap overflow-ellipsis">{{ post.postBody }}</span>
+    </div>
+</ng-template>

@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>{{ post.title }}</h2>
+<mat-dialog-content>
+  <div class="flex flex-col gap-2">
+    <span class="text-sm text-gray-500">By {{ post.userName }}</span>
+    <p>{{ post.postBody }}</p>
+  </div>
+  <div class="mt-5">
+    <h3 class="font-bold mb-2">Comments:</h3>
+    @for(comment of post.comments; track comment.id) {
+        <div class="mb-3 p-3 border rounded border-gray-200">
+            <span class="text-sm text-gray-500">{{ comment.userName }}:</span>
+            <p>{{ comment.commentBody }}</p>
+        </div>
+    }
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button matButton mat-dialog-close>Close</button>
+</mat-dialog-actions>
